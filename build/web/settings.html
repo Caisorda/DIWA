@@ -1,0 +1,122 @@
+<html>
+<head>
+	<title> DIWA </title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<style>
+            #settings{
+              color:black;
+              position:relative;
+              top:10;
+              left:50;
+            }   
+	</style>
+	<script>
+        function addLocation()
+        {
+            var location = $('#address').val();
+            var ul = document.getElementById("thesaved");
+            var li = document.createElement("li");
+            var button = document.createElement("button");
+            var span = document.createElement("span");
+            button.r
+            button.setAttribute('class',"btn btn-default btn-sm");
+            button.setAttribute('style',"float: right;");
+            span.setAttribute('class', "glyphicon glyphicon-chevron-right");
+            span.setAttribute('aria-hidden', "true");
+            span.setAttribute('onclick', "savedLocation('"+location+"');");
+            li.setAttribute('class',"list-group-item")
+            li.appendChild(document.createTextNode(location));
+            button.appendChild(span);
+            li.appendChild(button);
+            ul.appendChild(li);
+        }
+        function saveField(idname){
+            var div = document.getElementById(idname);
+            div.innerHTML = '';
+            var button = document.createElement("button");
+            var span = document.createElement("span");
+            if(idname=='username'){
+                div.innerHTML = '<strong>Username</strong>&nbsp;&nbsp;&nbsp;&nbsp;'+document.getElementById("usernameInput").value;
+            }else if(idname=='fullname'){
+                div.innerHTML = '<strong>Name</strong>&nbsp;&nbsp;&nbsp;&nbsp;'+document.getElementById("fullnameInput").value;
+            }else if(idname=='location'){
+                div.innerHTML = '<strong>Current Location</strong>&nbsp;&nbsp;&nbsp;&nbsp;'+document.getElementById("locationInput").value;
+            }
+        }
+        function editField(idname){
+            var div = document.getElementById(idname);
+            div.innerHTML = '';
+            var input = document.createElement("input");
+            var button = document.createElement("button");
+            var span = document.createElement("span");
+            var form = document.createElement("form");
+            form.setAttribute('class', "form-inline");
+            button.setAttribute('class',"btn btn-default btn-sm");
+            button.setAttribute('style',"float: right;");
+            span.setAttribute('class', "glyphicon glyphicon-ok");
+            span.setAttribute('aria-hidden', "true");
+            button.setAttribute('onclick', "saveField('"+idname+"');");
+            input.setAttribute('class', "form-control");
+            input.setAttribute('placeholder', "Input new "+idname+"...");
+            input.setAttribute('id', idname+"Input")
+            button.appendChild(span);
+            form.appendChild(input);
+            form.appendChild(button);
+            div.appendChild(form);
+            
+        }
+     $(document).ready(function removeLocation(){                 
+        $('.list-group').on("click",".btn btn-default btn-sm",function () 
+        {   $(this).prev('li').remove();
+             $(this).remove();
+        });
+        });
+	</script>
+</head>
+<body>
+		<nav class="navbar navbar-default navbar-static-top" style="margin:0px;">
+			<div class="container">
+				<div class="navbar-header">
+					 <h2>DIWA</h2>
+					 <h4>Disaster Information and Warning Application</h4>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+				  
+				    <ul class="nav navbar-nav navbar-right" style="margin-top:20px;">
+				  
+					<li><a href="diwahomepage.html"><span class="glyphicon glyphicon-user" aria-hidden="true"> Account</a></li>
+					<li><a href="#about"> <span class="glyphicon glyphicon-cog" aria-hidden="true"> Settings</a></li>
+					<li><a href="diwahomepage.html"> <span class="glyphicon glyphicon-off" aria-hidden="true"> Logout</a></li>
+					
+				  </ul>
+				  
+				</div>
+			</div>
+		</nav>
+	<div id="main">
+		<div id="left">
+                    <h2>User Settings</h2>
+                    <div id="settings">
+                        <div class="well well-sm" id="username"><strong>Username</strong>&nbsp;&nbsp;&nbsp;&nbsp;Username here<button class="btn btn-default btn-sm" style="float: right;" onclick="editField('username');"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style = "float: right;"></button></div>
+                        <div class="well well-sm" id="fullname"><strong>Name</strong>&nbsp;&nbsp;&nbsp;&nbsp;Full name here<button class="btn btn-default btn-sm" style="float: right;" onclick="editField('fullname');"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style = "float: right;"></button></div>
+                        <div class="well well-sm" id="location"><strong>Current Location</strong>&nbsp;&nbsp;&nbsp;&nbsp;Current location here<button class="btn btn-default btn-sm" style="float: right;" onclick="editField('location');"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style = "float: right;"></button></div>
+                    
+                        <h4 style="color: white;">Saved Locations</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">Sta. Mesa<button class="btn btn-default btn-sm" style="float: right;"><span class="glyphicon glyphicon-remove" aria-hidden="true" style = "float: right;" onclick="removeLocation();"></span></button></li>
+                            <li class="list-group-item">Mandaluyong <button class="btn btn-default btn-sm" style="float: right;"><span class="glyphicon glyphicon-remove" aria-hidden="true" style = "float: right;" onclick="removeLocation();"></span></button></li>
+                            <li class="list-group-item">Quezon City <button class="btn btn-default btn-sm" style="float: right;"><span class="glyphicon glyphicon-remove" aria-hidden="true" style = "float: right;" onclick="removeLocation();"></span></button></li>
+                            <li class="list-group-item">Brgy. Don Bosco <button class="btn btn-default btn-sm" style="float: right;"><span class="glyphicon glyphicon-remove" aria-hidden="true" style = "float: right;" onclick="removeLocation();"></span></button></li>
+                            <button class="rmv_btn" style="float: right;">Remove</button>
+                        </ul>
+                    </div>
+		</div>
+		<div id="right">
+		</div>
+	</div>
+	<footer>
+		<h5> Copyright 2015 Baldip Bhuller Francesco Salceda</h5>
+	</footer>
+</body>
+</html>

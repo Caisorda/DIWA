@@ -1,0 +1,94 @@
+<html>	
+	<head>
+		<title>(Brgy. Don Bosco)Insert Area Name Here</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<style>
+			.center{
+				margin-left: auto;
+				margin-right: auto;
+			}
+			#map{
+				position: relative;
+				height: 400;
+				width: 800;
+			}
+			#disasters{
+				position: relative;
+				margin-left: 5;
+				margin-right: 5;
+				width: 390;
+				float: left;
+			}
+			.progress-bar{
+				min-width: 5em;
+			}
+			#below{
+				position: relative;
+				top:260;
+				width: 800;
+			}
+		</style>
+		<script>
+		</script>
+	</head>
+	<body>
+		<div id="map" class="center">
+			<h1 id="location">Brgy. Don Bosco</h1>
+			<img id ="map" src="mock.jpg">
+			<h3>Disaster Probability</h2>
+			<div id="disasters">
+				Typhoon
+				<div id="typhoon" class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+						20%
+					</div>
+				</div>
+				Flood
+				<div id="flood" class="progress">
+					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+						40%
+					</div>
+				</div>
+				Earthquake
+				<div id="earthquake" class="progress">
+					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+						60%
+					</div>
+				</div>
+			</div>
+			Volcanic Eruption
+			<div id="disasters">
+				<div id="volcanic" class="progress">
+					<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+						80%
+					</div>
+				</div>
+				Storm Surge
+				<div id="storm" class="progress">
+					<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+						100%
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="below" class="center">
+			<h3>Disaster Occurence</h2>
+			<div class="alert alert-danger" role="alert">
+				<strong>TROPICAL STORM SIGNAL NO.1</strong>
+				 Stock up on
+				<a href="" class="alert-link">Useful Resources</a>
+				and read the
+				<a href="" class="alert-link">Safety Guidelines</a>
+			</div>
+			<div class="alert alert-success" role="alert">Ignore this</div>
+			<div class="alert alert-success" role="alert"><strong>Hurray!</strong> No Disaster imminent. <strong>Have a nice day!</strong></div>
+			<div class="alert alert-warning" role="alert">
+				<strong>Flooding Imminent</strong>
+				 Stock up on
+				<a href="" class="alert-link">Useful Resources</a>
+				and read the
+				<a href="" class="alert-link">Safety Guidelines</a>
+			</div>
+		</div>
+	</body>
+</html>

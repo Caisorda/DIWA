@@ -8,7 +8,7 @@
  *
  * @author Lucky
  */
-
+package otherstuff;
 import java.sql.*;
 
 import java.util.*;
@@ -43,25 +43,5 @@ public class DBConnection {
 	public void setDriverName(String driverName) {
 		this.driverName = driverName;
 	}
-/*	public static void main(String[] args){
-		dbConnection db = new dbConnection();
-		db.getConnection();
-		try{
-		ResultSet rs;
-		PreparedStatement statement;
-		String query = "SELECT * FROM cinemas";
-		
-			statement = db.getConnection().prepareStatement(query);
-			
-			rs = statement.executeQuery();
-			if(rs.next()){
-				System.out.print(rs.getString("CinemaName"));
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		
-	} */
 
 }

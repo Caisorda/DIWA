@@ -35,20 +35,21 @@
 	<div id="main">
 		<div id="left">
 			<div id="login">
-				<form class="form-inline">
+                            <form action="LoginServlet" method="POST">
 					<label for="username">Username:</label>
-					<input type="username" class="form-control" id="username" placeholder="Email Address">
-				</form><br>
-				<form class="form-inline">
+					<input type="text" name="username" class="form-control" id="username" placeholder="Email Address">
+
+				
 					<label for="password">Password:</label>
 					<input type="password" class="form-control" id="password" placeholder="Password">
-				</form><br>
-				<form class="form-inline">
-                    <button type="button" class="btn btn-primary btn-lg" id="loginbtn" onclick="location.href='savedlocations(1).html'">Login</button>
+				
+				
+                                        <button type="submit" class="btn btn-primary btn-lg" id="loginbtn">Login</button>
 					<button type="button" class="btn btn-primary btn-lg" id="guestbtn" onclick="location.href='mainscreen.html'">Login as Guest</button>
  
-				</form>
+				
 				<a href="register.html">Not yet Registered? Sign-Up Now</a>
+                            </form>
 			</div>
 		</div>
 		<div id="right">

@@ -18,11 +18,10 @@ function validateRegister()
 	else if ( document.register.password.value != "" && document.register.password.value != document.register.configpassword.value)
 	{alert("Passwords do not match"); check=0;
 	}
-    if(check){
+    if(check)
     {alert("REGISTER SUCCESSFULL"); 
 	}
 	//if(document.SignUP.email.value == "")
 	//{alert("Empty Email");  
 	//}
-
 }

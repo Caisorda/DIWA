@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private final String userID = "user";
+    private final String user = "user";
     private final String password = "pwd";
  
     protected void doPost(HttpServletRequest request,
@@ -34,17 +34,17 @@ public class LoginServlet extends HttpServlet {
 {
  
         // get request parameters for userID and password
-        String user = request.getParameter("user");
+        String username = request.getParameter("username");
         String pwd = request.getParameter("pwd");
         System.out.println("whoa");
-        if(userID.equals(user) && password.equals(pwd)){
+        if(username.equals(user)){
             Cookie loginCookie = new Cookie("user",user);
             //setting cookie to expiry in 30 mins
             loginCookie.setMaxAge(30*60);
             response.addCookie(loginCookie);
-            response.sendRedirect("mainscreen.html");
+            response.sendRedirect("savedlocations.jsp");
         }else{
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/diwahomepage.html");
             PrintWriter out= response.getWriter();
             out.println("<font color=red>Either user name or password is wrong.</font>");
             rd.include(request, response);

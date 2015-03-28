@@ -31,19 +31,19 @@ public class User {
         this.userID = userID;
     }
 
-    String getFname() {
+    public String getFname() {
         return fname;
     }
 
-    String getLname() {
+    public String getLname() {
         return lname;
     }
     
-    String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    String getPassword() {
+    public String getPassword() {
         return password;
     }
 }

@@ -16,17 +16,33 @@ import java.io.*;
 import java.awt.*;
 
 public class DBConnection {
+        private static DBConnection instance = null;
+        
 	private String	driverName	= "com.mysql.jdbc.Driver";
 	private String	url		= "jdbc:mysql://localhost:3306/";
 	private String	database	= "diwa";
 	private String	username	= "root";
-	private String	password	= "lucky";
+	private String	password	= "Pr0crastinate";
+        
+        public static DBConnection getInstance() {
+        if (instance == null) {
+            instance = new DBConnection();
+        }
 
-	public Connection getConnection(){
+        return instance;
+    }
+
+	public static Connection getConnection(){
+            
+                if (instance == null) {
+                    instance = new DBConnection();
+                }
+                
 		try{
-			Connection con = DriverManager.getConnection(url + database, username, password);
-			System.out.println("DB connection SUCCESSFUL");
-			return con;
+			return DriverManager.getConnection(instance.getUrl()
+                                                        + instance.getDatabase(),
+                                                         instance.getUsername(),
+                                                            instance.getPassword());
 		}catch( Exception e){
 			System.out.println("Couldnt connect");
 			e.printStackTrace();
@@ -36,9 +52,41 @@ public class DBConnection {
 		
 	}
 	
-	public String getDriverName() {
-		return driverName;
-	}
+	public String getUrl() {
+        return url;
+    }
+
+    /**
+     * returns database name
+     *
+     * @return database name
+     */
+    public String getDatabase() {
+        return database;
+    }
+
+    /**
+     * returns username
+     *
+     * @return username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    private String getPassword() {
+        return password;
+    }
+
+    /**
+     * returns whether password is correct or not
+     *
+     * @param password password to checkPassword
+     * @return whether password is correct or not
+     */
+    public boolean isCorrectPassword(String password) {
+        return password.equals(this.password);
+    }
 
 	public void setDriverName(String driverName) {
 		this.driverName = driverName;

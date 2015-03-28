@@ -7,8 +7,10 @@ package otherstuff;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
 public class RegisterServlet extends HttpServlet {
-
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,18 +34,60 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        System.out.println("ahihi");
+        DAO dao = DAO.getInstance();
+        String firstname, lastname, username, password, confirmPassword;
+        firstname = request.getParameter("fname");
+        lastname = request.getParameter("lname");
+        username = request.getParameter("username");
+        password = request.getParameter("password");
+        confirmPassword = request.getParameter("configpassword");
+        if(firstname == null && lastname == null && username == null && password == null && confirmPassword == null){
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
+            PrintWriter out= response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Please fill up all fields');");
+            out.println("location='index.jsp';");
+            out.println("</script>");
+            String data = firstname + " " + lastname + " " + username + " " + password + " " + confirmPassword;
+            Cookie cookie = new Cookie("data",data);
+            response.addCookie(cookie);
+            rd.include(request, response);
+        } else if(!password.equals(confirmPassword)){
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
+            PrintWriter out= response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('Make sure both passwords match');");
+            out.println("location='index.jsp';");
+            out.println("</script>");
+            String data = firstname + " " + lastname + " " + username + " " + password + " " + confirmPassword;
+            Cookie cookie = new Cookie("data",data);
+            response.addCookie(cookie);
+            rd.include(request, response);
+        } else{
+            if((dao.get(lastname, username)) != null){
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
+                PrintWriter out= response.getWriter();
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Username already taken. Choose another.');");
+                out.println("location='index.jsp';");
+                out.println("</script>");
+                String data = firstname + " " + lastname + " " + username + " " + password + " " + confirmPassword;
+                Cookie cookie = new Cookie("data",data);
+                response.addCookie(cookie);
+                rd.include(request, response);
+            }
+            else{
+                
+                dao.add("user", new User(firstname, lastname, username, password));
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
+                PrintWriter out= response.getWriter();
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Register successful');");
+                out.println("location='index.jsp';");
+                out.println("</script>");
+                rd.include(request, response);
+            }
         }
     }
 
@@ -72,6 +117,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("ahihi");
         processRequest(request, response);
     }
 
